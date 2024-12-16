@@ -3,7 +3,7 @@ function getTimeLeft(expectedDate, timeSlot) {
         return 'Invalid input';
     }
 
-    const [date, timeRange] = expectedDate.split(' ');
+    const [date] = expectedDate.split(' ');
     const [day, month, year] = date.split('-').map(num => parseInt(num, 10));
     const [startTime, endTime] = timeSlot.split(' - ');
 
