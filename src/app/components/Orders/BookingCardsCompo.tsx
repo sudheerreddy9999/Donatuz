@@ -9,6 +9,7 @@ import useIsMdScreen from "../../hooks/useIsMdScreen";
 import { MdCallEnd } from "react-icons/md";
 import { LuPhoneCall } from "react-icons/lu";
 import { TfiLayoutLineSolid } from "react-icons/tfi";
+import {getTimeLeft} from '../../utils/getTimeLeft'
 
 type BookingData = {
   id: number;
@@ -87,7 +88,7 @@ const BookingCards = ({ currentOrders,handleJoinCall,createRoomId }: Props) => {
                     </span>
                     <div className="block md:hidden  text-[16px]">
                       <p className="flex justify-start items-center text-[14px] ">
-                        {call.timeLeft}
+                      {getTimeLeft(call.expectedDate,call.timeSlot)}
                       </p>
                     </div>
                   </div>
@@ -129,7 +130,7 @@ const BookingCards = ({ currentOrders,handleJoinCall,createRoomId }: Props) => {
                         <MdDateRange size={20} /> : {call.date}
                       </p>
                       <p className="flex justify-start items-center ">
-                        <IoIosAlarm size={20} /> : {call.timeLeft}
+                        <IoIosAlarm size={20} /> : {getTimeLeft(call.expectedDate,call.timeSlot)}
                       </p>
                     </div>
                   </div>
@@ -157,8 +158,8 @@ const BookingCards = ({ currentOrders,handleJoinCall,createRoomId }: Props) => {
                   }`}
                 >
                   {call.status === "Active"
-                    ? `Starts In: ${call.timeLeft}`
-                    : `Call starts in: ${call.timeLeft}`}
+                    ? `Starts In: ${getTimeLeft(call.expectedDate,call.timeSlot)}`
+                    : `Call starts in: ${getTimeLeft(call.expectedDate,call.timeSlot)}`}
                 </p>
               </div>
             </div>
@@ -276,7 +277,7 @@ const BookingCards = ({ currentOrders,handleJoinCall,createRoomId }: Props) => {
               <h3 className="m-4 ml-0"> {selectedBooking.callType} Details</h3>
               <div className="flex space-x-4 text-yellow-400">
                 <span className="font-medium">Starts in:</span>
-                <span>{selectedBooking.timeLeft}</span>
+                <span>{getTimeLeft(selectedBooking.expectedDate,selectedBooking.timeSlot)}</span>
               </div>
               <div className="flex items-center space-x-4">
                 <img

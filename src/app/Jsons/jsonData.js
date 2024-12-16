@@ -9,7 +9,7 @@ const OrdersData = [
     callJoined: true,
     categoryType: "Business",
     occasion: "Birthday",
-    expectedDate: "10-10-2024",
+    expectedDate: "17-12-2024",
     timeSlot: "3:00 PM - 4:30 PM",
   },
   {
@@ -22,7 +22,7 @@ const OrdersData = [
     callJoined: true,
     categoryType: "Business",
     occasion: "Birthday",
-    expectedDate: "10-10-2024",
+    expectedDate: "18-12-2024",
     timeSlot: "10:00 AM - 11:30 AM",
   },
   {
@@ -35,7 +35,7 @@ const OrdersData = [
     callJoined: true,
     categoryType: "Business",
     occasion: "Birthday",
-    expectedDate: "10-10-2024",
+    expectedDate: "19-12-2024",
     timeSlot: "9:00 AM - 10:00 AM",
   },
   {
@@ -48,7 +48,7 @@ const OrdersData = [
     callJoined: false,
     categoryType: "Personal",
     occasion: "Birthday",
-    expectedDate: "10-10-2024",
+    expectedDate: "21-12-2024",
     timeSlot: "1:00 PM - 2:30 PM",
   },
   {
@@ -61,7 +61,7 @@ const OrdersData = [
     callJoined: false,
     categoryType: "Personal",
     occasion: "Birthday",
-    expectedDate: "10-10-2024",
+    expectedDate: "22-12-2024",
     timeSlot: "2:00 PM - 3:00 PM",
   },
   {
@@ -74,7 +74,7 @@ const OrdersData = [
     callJoined: false,
     categoryType: "Personal",
     occasion: "Birthday",
-    expectedDate: "10-10-2024",
+    expectedDate: "23-12-2024",
     timeSlot: "2:00 PM - 3:00 PM",
   },
   {
@@ -87,7 +87,7 @@ const OrdersData = [
     callJoined: true,
     categoryType: "Business",
     occasion: "Anniversary",
-    expectedDate: "12-12-2024",
+    expectedDate: "18-12-2024",
     timeSlot: "4:00 PM - 5:30 PM",
   },
   {
