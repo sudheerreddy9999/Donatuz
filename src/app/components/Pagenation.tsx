@@ -1,12 +1,18 @@
 import React from "react";
 import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
+interface PageNationProps {
+  itemsPerPage: number;
+  currentPage: number;
+  handlePageChange: (newPage: number) => void;
+  totalPages: number;
+}
 
 const PageNation = ({
   itemsPerPage,
   currentPage,
   handlePageChange,
   totalPages,
-}: any) => {
+}: PageNationProps) => {
   return (
     <div className="flex items-center justify-between w-full ">
       <div className="text-white text-xs">{itemsPerPage} Items</div>

@@ -15,6 +15,11 @@ type Timeslot = {
   slot: string;
   isBooked: boolean;
 };
+type Period = "morning" | "afternoon" | "evening";
+interface Slot {
+  slot: string;
+  isBooked: boolean;
+}
 interface ButtonProps {
   className?: string;
   onClick?: () => void;
@@ -163,7 +168,7 @@ const BookCallComp1: React.FC<BookCallComp1Props> = ({ callInfo }) => {
   >("morning");
 
   const router = useRouter();
-  const isMdScreen: any = useIsMdScreen();
+  const isMdScreen: boolean = useIsMdScreen();
 
   const handlePeriodClick = (period: "morning" | "afternoon" | "evening") => {
     setSelectedPeriod(period);
@@ -265,8 +270,8 @@ const BookCallComp1: React.FC<BookCallComp1Props> = ({ callInfo }) => {
         </div>
       </div>
     ));
-  const filterSlotsByDuration = (slots: any, selectedDuration: any) => {
-    return slots.filter((slot: any) => {
+  const filterSlotsByDuration = (slots:Slot[] , selectedDuration: string) => {
+    return slots.filter((slot: Slot) => {
       if (!selectedDuration) return true;
 
       const durationInMinutes = calculateMinutes(selectedDuration);
@@ -447,11 +452,13 @@ const BookCallComp1: React.FC<BookCallComp1Props> = ({ callInfo }) => {
                         <div>
                           <div className="flex justify-between my-1 md:my-6 bg-gray-800  rounded-lg">
                             {["morning", "afternoon", "evening"].map(
-                              (period: any) => (
+                              (period: string) => (
                                 <button
                                   key={period}
-                                  onClick={() => handlePeriodClick(period)}
-                                  className={`text-xs  text-gray-600 py-3 px-4 ${
+                                  onClick={() =>
+                                    handlePeriodClick(period as Period)
+                                  } 
+                                  className={`text-xs text-gray-600 py-3 px-4 ${
                                     selectedPeriod === period
                                       ? "text-white my-1"
                                       : ""
@@ -473,13 +480,14 @@ const BookCallComp1: React.FC<BookCallComp1Props> = ({ callInfo }) => {
                                 {data?.userSlotsData.find(
                                   (slotData) => slotData.date === selectedDate
                                 )?.timeslots[selectedPeriod] &&
-                                  filterSlotsByDuration(
+                                filterSlotsByDuration(
+                                  (
                                     data.userSlotsData.find(
-                                      (slotData) =>
-                                        slotData.date === selectedDate
-                                    )?.timeslots[selectedPeriod],
-                                    selectedDuration
-                                  ).map((slot: any, index: number) => (
+                                      (slotData) => slotData.date === selectedDate
+                                    )?.timeslots[selectedPeriod] || []
+                                  ) as Slot[], 
+                                  selectedDuration
+                                ).map((slot: Slot, index: number) => (
                                     <button
                                       key={index}
                                       onClick={() =>
@@ -519,7 +527,7 @@ const BookCallComp1: React.FC<BookCallComp1Props> = ({ callInfo }) => {
                                   </p>
                                   <div className="grid grid-cols-5 gap-2 mt-1">
                                     {filteredSlots.map(
-                                      (slot: any, index: any) => (
+                                      (slot: Slot, index: number) => (
                                         <button
                                           key={index}
                                           onClick={() =>

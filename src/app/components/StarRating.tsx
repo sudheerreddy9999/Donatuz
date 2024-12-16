@@ -9,11 +9,11 @@ interface StarRatingProps {
 const StarRating: React.FC<StarRatingProps> = ({ rating, onRatingChange }) => {
   const roundedRating = Math.round(rating * 10) / 10;
 
-  const handleRatingChange = (newRating: number) => {
-    if (onRatingChange) {
-      onRatingChange(newRating);
-    }
-  };
+  // const handleRatingChange = (newRating: number) => {
+  //   if (onRatingChange) {
+  //     onRatingChange(newRating);
+  //   }
+  // };
 
   return (
     <StarRatings

@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
-require("dotenv").config();
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+import dotenv from "dotenv";
+import Stripe from "stripe";
+
+dotenv.config();
+
+const stripe = new Stripe(
+  process.env.STRIPE_SECRET_KEY ||
+    (() => {
+      throw new Error("STRIPE_SECRET_KEY is not defined");
+    })()
+);
 
 export async function POST(request: NextRequest) {
   try {

@@ -19,9 +19,6 @@ interface UserSlotsData {
   };
 }
 
-interface BookCallProps {
-  closeBookCall: () => void;
-}
 
 interface ApiResponse {
   user: {
@@ -32,7 +29,7 @@ interface ApiResponse {
   };
   userSlotsData: UserSlotsData[];
 }
-const BookCall: React.FC<BookCallProps> = () => {
+const BookCall: React.FC = () => {
   const [data, setData] = useState<ApiResponse | null>(null); 
 
   useEffect(() => {

@@ -4,19 +4,23 @@ import { TbMessageDots } from "react-icons/tb";
 import { MdCallEnd } from "react-icons/md";
 import { LuPhoneCall } from "react-icons/lu";
 import Link from "next/link";
+
 type Booking = {
   img: string;
   userName: string;
   email: string;
 };
+
 type BookingInfo = {
   heading: string;
   data: Booking[];
 };
+
 type OrderInfoBoxProps = {
   BookingsInfo: BookingInfo[];
-  createRoomId: any;
+  createRoomId: string;
 };
+
 const OrderInfoBox = ({ BookingsInfo, createRoomId }: OrderInfoBoxProps) => {
   return (
     <div>
@@ -27,9 +31,9 @@ const OrderInfoBox = ({ BookingsInfo, createRoomId }: OrderInfoBoxProps) => {
         >
           <h3 className="font-semibold mb-2">{info.heading}</h3>
           <div>
-            {info.data.map((booking: any, idx) => (
+            {info.data.map((booking: Booking, idx: number) => (
               <div
-                key={`upcomming-${idx}`}
+                key={`upcoming-${idx}`}
                 className="flex justify-between items-center rounded-md mb-2 p-2 shadow-sm"
               >
                 <div className="flex items-center">
@@ -46,12 +50,12 @@ const OrderInfoBox = ({ BookingsInfo, createRoomId }: OrderInfoBoxProps) => {
                 <div className="flex items-center space-x-2">
                   <button
                     className={`p-2 text-white rounded-full ${
-                      info.heading == "Upcoming Calls"
+                      info.heading === "Upcoming Calls"
                         ? "bg-gradient-to-r from-blue-100 to-gray-700 hover:from-blue-500 hover:to-white transition duration-200 ease-in-out"
                         : "bg-red-500"
                     }`}
                   >
-                    {info.heading == "Upcoming Calls" ? (
+                    {info.heading === "Upcoming Calls" ? (
                       <TbMessageDots size={20} />
                     ) : (
                       <MdCallEnd size={20} />
@@ -59,14 +63,13 @@ const OrderInfoBox = ({ BookingsInfo, createRoomId }: OrderInfoBoxProps) => {
                   </button>
                   <button
                     className={`p-2 rounded-full ${
-                      info.heading == "Active Calls" && "bg-blue-700 hover:p-3"
+                      info.heading === "Active Calls" && "bg-blue-700 hover:p-3"
                     }`}
                   >
-                    {info.heading == "Upcoming Calls" ? (
+                    {info.heading === "Upcoming Calls" ? (
                       <BiDotsVerticalRounded size={20} />
                     ) : (
-                      <Link
-                        href={`/videoCall/${createRoomId}`}                      >
+                      <Link href={`/videoCall/${createRoomId}`}>
                         <LuPhoneCall size={20} />
                       </Link>
                     )}

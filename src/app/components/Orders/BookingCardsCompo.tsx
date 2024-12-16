@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import StarRating from "../StarRating";
 import { formatDate } from "../../utils/dateTimeUtils";
@@ -27,7 +27,7 @@ type BookingData = {
 type Props = {
   currentOrders: BookingData[];
   handleJoinCall: () => void;
-  createRoomId:any
+  createRoomId:string
 };
 
 const BookingCards = ({ currentOrders,handleJoinCall,createRoomId }: Props) => {
@@ -40,7 +40,7 @@ const BookingCards = ({ currentOrders,handleJoinCall,createRoomId }: Props) => {
     null
   );
 
-  const isMdScreen: any = useIsMdScreen();
+  const isMdScreen: boolean = useIsMdScreen();
   const handleRatingChange = (id: number, newRating: number) => {
     setRatings((prevRatings) => ({
       ...prevRatings,
@@ -59,7 +59,6 @@ const BookingCards = ({ currentOrders,handleJoinCall,createRoomId }: Props) => {
   };
 
   const closeOverlay = () => {
-    console.log("clicked is ");
     setShowOverlay(false);
     setSelectedBooking(null);
   };
@@ -70,7 +69,7 @@ const BookingCards = ({ currentOrders,handleJoinCall,createRoomId }: Props) => {
 
   return (
     <div>
-      {currentOrders.map((call, index) => (
+      {currentOrders.map((call) => (
         <div key={`item-${call.id}`} className="rounded-md text-sm m-2">
           <h3 className="text-sm text-white mb-2">{call.callType}</h3>
           {!isMdScreen && call.status == "Active" && (

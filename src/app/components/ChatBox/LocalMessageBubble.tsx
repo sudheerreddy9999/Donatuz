@@ -1,5 +1,5 @@
-import { TPeerMetadata } from '@/utils/types';
-import { useLocalPeer } from '@huddle01/react/hooks';
+// import { TPeerMetadata } from '@/utils/types';
+// import { useLocalPeer } from '@huddle01/react/hooks';
 import { TMessage } from './ChatBox';
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
 }
 
 function LocalMessageBubble({ message }: Props) {
-  const { metadata } = useLocalPeer<TPeerMetadata>();
+  // const { metadata } = useLocalPeer<TPeerMetadata>();
 
   return (
     <div className="w-full items-end flex flex-col bg-white rounded-lg">
