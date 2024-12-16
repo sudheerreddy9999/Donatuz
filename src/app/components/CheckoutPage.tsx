@@ -47,7 +47,7 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
       elements,
       clientSecret,
       confirmParams: {
-        return_url: "http://localhost:3001/orders",
+        return_url: "https://donatuz-mu.vercel.app/orders",
       },
     });
 

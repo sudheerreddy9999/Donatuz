@@ -49,6 +49,7 @@ const VideoCall = () => {
   const handleAccesToken = async () => {
     try {
       const res = await axios.get(`/api/token?roomId=${params.id}`);
+      console.log(res.data," $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
       setToken(res.data);
     } catch (error) {
       console.log(error);
