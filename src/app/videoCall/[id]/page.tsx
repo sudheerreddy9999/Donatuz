@@ -30,7 +30,7 @@ const VideoCall = () => {
     useLocalScreenShare();
   const { peerIds } = usePeerIds();
   const router = useRouter();
-  const [timeLeft, setTimeLeft] = useState(60);
+  const [timeLeft, setTimeLeft] = useState(600);
   const [isTimerActive, setIsTimerActive] = useState(false);
 
   useEffect(() => {
