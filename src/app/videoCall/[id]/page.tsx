@@ -30,7 +30,7 @@ const VideoCall = () => {
     useLocalScreenShare();
   const { peerIds } = usePeerIds();
   const router = useRouter();
-  const [timeLeft, setTimeLeft] = useState(600);
+  const [timeLeft, setTimeLeft] = useState(60);
   const [isTimerActive, setIsTimerActive] = useState(false);
 
   useEffect(() => {
@@ -49,7 +49,6 @@ const VideoCall = () => {
   const handleAccesToken = async () => {
     try {
       const res = await axios.get(`/api/token?roomId=${params.id}`);
-      console.log(res.data," $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
       setToken(res.data);
     } catch (error) {
       console.log(error);
