@@ -114,7 +114,7 @@ const VideoCall = () => {
           {state === "left" || state === "closed" ? (
             <div>back</div>
           ) : (
-            <div className="text-[12px] font-normal">{timeLeft} Min Left</div>
+            <div className="text-[12px] font-normal">{timeLeft}sec Left</div>
           )}
         </div>
       </div>
