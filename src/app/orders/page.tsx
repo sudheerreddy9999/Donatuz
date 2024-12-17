@@ -151,7 +151,7 @@ const Home: React.FC = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            "x-api-key": "ak_YMJUqWDWp3XJYJWc",
+            "x-api-key": "ak_iNM53RyFmEbyUcg9",
           },
         }
       );

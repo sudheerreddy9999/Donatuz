@@ -8,7 +8,7 @@ export default function VideoCallLayout({
   children: React.ReactNode;
 }) {
   const huddleClient = new HuddleClient({
-    projectId:"9mqBbib-0SoWyQBxXMExY8VaGee1e9lO",
+    projectId:"pi_tXMgaQJcLt4CiBkx",
   });
 
   return <HuddleProvider client={huddleClient}>{children}</HuddleProvider>;
