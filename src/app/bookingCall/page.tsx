@@ -19,9 +19,6 @@ interface UserSlotsData {
   };
 }
 
-interface BookCallProps {
-  closeBookCall: () => void;
-}
 
 interface ApiResponse {
   user: {
@@ -32,8 +29,8 @@ interface ApiResponse {
   };
   userSlotsData: UserSlotsData[];
 }
-const BookCall: React.FC<BookCallProps> = () => {
-  const [data, setData] = useState<ApiResponse | null>(null);
+const BookCall: React.FC = () => {
+  const [data, setData] = useState<ApiResponse | null>(null); 
 
   useEffect(() => {
     setTimeout(() => {
@@ -41,7 +38,6 @@ const BookCall: React.FC<BookCallProps> = () => {
     }, 2000);
   }, []);
 
-  //bg-[#ffffff1a] backdrop-blur-[11.6px]  btn : bg-[#504DFB]
   return (
     <>
       <Sidebar />
