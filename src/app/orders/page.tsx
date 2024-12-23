@@ -23,6 +23,8 @@ type CallData = {
   occasion: string;
   expectedDate: string;
   timeSlot: string;
+  amountPaid: string,
+  paymentMethod: string,
 };
 
 const Home: React.FC = () => {
@@ -135,9 +137,9 @@ const Home: React.FC = () => {
   const manageSearchBox = () => {
     setShowSearchBox(!showSearchBox);
   };
-  const handleJoinCall = ()=>{
+  const handleJoinCall = () => {
     handleRoomId();
-  }
+  };
   const handleRoomId = async () => {
     try {
       const response = await axios.post(
@@ -163,7 +165,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     handleRoomId();
   }, []);
-   const displaySkeleton = (count: number): ReactNode => {
+  const displaySkeleton = (count: number): ReactNode => {
     return (
       <div className=" my-7 p-3 bg-gray-800  rounded-md">
         <div className="h-4  w-32 my-2  animate-pulse transition duration-200 ease-in-out transform   bg-gray-600 mt-3  rounded-md"></div>
@@ -196,7 +198,7 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      <div className="w-full h-screen md:h-screen md:bg-gray-900 rounded-lg bg-opacity-50 shadow-lg backdrop-blur-md 0 flex items-center justify-center">
+      <div className="w-full h-screen md:h-screen bg-[#ffffff1a] backdrop-blur-[11.6px] rounded-lg bg-opacity-50 shadow-lg  flex items-center justify-center">
         <Sidebar />
         <div className="md:w-[1230px] w-full md:h-[610px] absolute top-0 md:top-24 flex left-1 md:left-[240px] md:space-x-3 text-white  rounded-lg overflow-auto">
           <div className="text-white md:p-2  w-full  md:w-9/12">
@@ -204,7 +206,7 @@ const Home: React.FC = () => {
               className={`flex md:space-x-8 md:w-8/12 md:p-2 md:px-6 rounded-lg ${
                 data.length === 0
                   ? "h-12 animate-pulse transition duration-200 ease-in-out transform bg-gray-600"
-                  : "bg-[#ffffff1a] backdrop-blur-[11.6px] rounded-md"
+                  : "bg-gray-700 rounded-md"
               } md:flex hidden`}
             >
               {data.length !== 0 &&
@@ -224,7 +226,7 @@ const Home: React.FC = () => {
             </div>
 
             {activeTab === "Calls" && (
-              <div className="md:bg-gradient-to-r from-gray-600 to-transparent  bg-opacity-50 shadow-lg backdrop-blur-[11.6px] md:mt-4 text-white  md:p-3 rounded-t-md">
+              <div className="bg-gray-700 backdrop-blur-[11.6px] rounded-lg bg-opacity-50 shadow-lg  md:mt-4 text-white  md:p-3 rounded-t-md">
                 <div className="flex-col">
                   <div className="flex justify-between w-full mb-4">
                     <div className=" w-full">
@@ -270,7 +272,7 @@ const Home: React.FC = () => {
                       </div>
                     </div>
                     <div
-                      className={`flex items-center justify-end md:flex-row-reverse md:bg-gray-700 h-6 md:h-8 md:mt-0 md:px-3 md:py-2 md:rounded-md  ${
+                      className={`flex items-center justify-end md:flex-row-reverse md:bg-gray-600 backdrop-blur-[11.6px] h-6 md:h-8 md:mt-0 md:px-3 md:py-2 md:rounded-md  ${
                         !isMdScreen
                           ? " absolute bg-gray-900 w-[61.6%]  ml-[38%]  py-[40px]"
                           : "md:w-1/3"
@@ -280,7 +282,7 @@ const Home: React.FC = () => {
                         <input
                           type="text"
                           placeholder={isMdScreen ? "Search" : ""}
-                          className="appearance-none bg-gray-700 md:bg-transparent h-9  rounded-md text-sm w-full focus:outline-none mr-2"
+                          className="appearance-none bg-gray-600 md:bg-transparent h-9  rounded-md text-sm w-full focus:outline-none mr-2"
                           value={searchQuery}
                           onChange={(e) => setSearchQuery(e.target.value)}
                         />
@@ -297,12 +299,12 @@ const Home: React.FC = () => {
                   <div className="flex justify-end  md:justify-between items-center space-x-2">
                     <div className="hidden md:flex justify-center items-center space-x-3">
                       <p className="text-gray-400 text-sm">Sort By:</p>
-                      <div className="flex items-center bg-gray-700 px-3 py-2 rounded-md">
+                      <div className="flex items-center bg-gray-600 px-3 py-2 rounded-md">
                         <FaSort className="text-gray-400 text-sm mr-2" />
                         <select
                           value={sortOrder}
                           onChange={(e) => setSortOrder(e.target.value)}
-                          className="bg-gray-700 text-xs text-white outline-none"
+                          className="bg-gray-600 text-xs text-white outline-none"
                         >
                           <option value="Latest" className="">
                             Latest
@@ -310,11 +312,11 @@ const Home: React.FC = () => {
                           <option value="Oldest">Oldest</option>
                         </select>
                       </div>
-                      <div className="flex items-center space-x-2 bg-gray-700 px-3 py-2 rounded-md">
-                        <FaCalendarAlt className="text-gray-400 text-sm mr-2" />
+                      <div className="flex items-center space-x-2 bg-gray-600 px-3 py-2 rounded-md">
+                        <FaCalendarAlt className="text-gray-400  text-sm mr-2" />
                         <input
                           type="date"
-                          className="bg-gray-700 text-xs text-white rounded-md"
+                          className="bg-gray-600 text-xs text-white rounded-md"
                           value={dateRange.start}
                           onChange={(e) =>
                             setDateRange((prev) => ({
@@ -326,7 +328,7 @@ const Home: React.FC = () => {
                         <span className="text-gray-400 text-sm">-</span>
                         <input
                           type="date"
-                          className="bg-gray-700 text-xs text-white rounded-md"
+                          className="bg-gray-600 text-xs text-gray-300 rounded-md"
                           value={dateRange.end}
                           onChange={(e) =>
                             setDateRange((prev) => ({
@@ -340,11 +342,11 @@ const Home: React.FC = () => {
                     <div className="flex justify-center items-center pr-3 md:pr-0">
                       <FaFilter className="text-gray-400 text-xs mr-1" />
                       <p className="text-sm text-gray-400 pr-2">Filter : </p>
-                      <div className="flex items-center bg-gray-700 px-3 py-2 rounded-md">
+                      <div className="flex items-center bg-gray-600 px-3 py-2 rounded-md">
                         <select
                           value={timeSlot}
                           onChange={(e) => handleSortBySlot(e.target.value)}
-                          className="bg-gray-700 text-xs text-white outline-none"
+                          className="bg-gray-600 text-xs text-white outline-none"
                         >
                           <option value="all">All</option>
                           <option value="Mornings">Mornings</option>
@@ -440,7 +442,10 @@ const Home: React.FC = () => {
             <div>
               {data.length !== 0 ? (
                 <>
-                  <OrderInfoBox BookingsInfo={Data.callsData} createRoomId={createRoomId} />
+                  <OrderInfoBox
+                    BookingsInfo={Data.callsData}
+                    createRoomId={createRoomId}
+                  />
                 </>
               ) : (
                 <div className="my-4">
@@ -451,8 +456,8 @@ const Home: React.FC = () => {
             </div>
 
             <div
-              className={`bg-opacity-50 shadow-lg backdrop-blur-[11.6px]  rounded-md ${
-                data.length === 0 ? "bg-gray-700 " : "bg-gray-700 p-2 mr-3 mt-3"
+              className={`shadow-lg  bg-[#ffffffa] backdrop-blur-[70.6px] bg-opacity-50  rounded-md ${
+                data.length === 0 ? "" : "p-2 mr-3 mt-3"
               }`}
             >
               {data.length !== 0 ? (

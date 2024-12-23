@@ -26,7 +26,7 @@ const OrderInfoBox = ({ BookingsInfo, createRoomId }: OrderInfoBoxProps) => {
     <div>
       {BookingsInfo.map((info, index) => (
         <div
-          className="bg-gray-800 p-4 ml-3 md:ml-0 mr-3 mt-3 rounded-md"
+          className="backdrop-blur-[11.6px] p-4 ml-3 md:ml-0 mr-3 mt-3 rounded-md"
           key={index}
         >
           <h3 className="font-semibold mb-2">{info.heading}</h3>
@@ -83,5 +83,4 @@ const OrderInfoBox = ({ BookingsInfo, createRoomId }: OrderInfoBoxProps) => {
     </div>
   );
 };
-
 export default OrderInfoBox;

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
-import BookCallComp1 from "../components/BookCallCompo";
+import BookCallComp1 from "../components/BookCall/BookCallCompo";
 import Data from "../Jsons/jsonData";
 import "../../app/globals.css";
 interface TimeSlot {
@@ -19,6 +19,9 @@ interface UserSlotsData {
   };
 }
 
+interface BookCallProps {
+  closeBookCall: () => void;
+}
 
 interface ApiResponse {
   user: {
@@ -29,8 +32,8 @@ interface ApiResponse {
   };
   userSlotsData: UserSlotsData[];
 }
-const BookCall: React.FC = () => {
-  const [data, setData] = useState<ApiResponse | null>(null); 
+const BookCall: React.FC<BookCallProps> = () => {
+  const [data, setData] = useState<ApiResponse | null>(null);
 
   useEffect(() => {
     setTimeout(() => {
@@ -38,10 +41,11 @@ const BookCall: React.FC = () => {
     }, 2000);
   }, []);
 
+  //bg-[#ffffff1a] backdrop-blur-[11.6px]  btn : bg-[#504DFB]
   return (
     <>
       <Sidebar />
-      <div className="absolute w-full md:w-[1250px] md:h-[590px] md:top-24 md:left-[250px] text-white">
+      <div className="absolute w-full md:w-[82%] md:h-[86.2%] md:top-24 md:left-[250px] text-white">
         <div>
           <BookCallComp1 callInfo={data} />
         </div>
