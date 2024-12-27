@@ -18,6 +18,7 @@ import { MdCallEnd } from "react-icons/md";
 import { FiMic, FiMicOff } from "react-icons/fi";
 import { LuScreenShare, LuScreenShareOff } from "react-icons/lu";
 import { HiOutlineSpeakerWave } from "react-icons/hi2";
+import callAvatar from "../../../../public/Generic avatar.png";
 
 const VideoCall = () => {
   const [token, setToken] = useState<string>("");
@@ -123,7 +124,7 @@ const VideoCall = () => {
             <div className=" w-full h-[90%] flex justify-center items-center overflow-hidden ">
               <button
                 type="button"
-                className="bg-blue-500 p-2  rounded-lg text-white"
+                className="bg-[#504DFB] p-2  rounded-lg text-white"
                 onClick={async () => {
                   await joinRoom({
                     roomId: params.id as string,
@@ -140,7 +141,7 @@ const VideoCall = () => {
           {state === "connected" && (
             <div className="w-full h-[80%] md:w-full md:h-[80%] ">
               <div className=" w-full h-full md:w-full md:h-full grid-cols-1 grid md:grid-cols-2 items-center   ">
-                <div className=" w-[100%] h-[200px] md:w-[500px] md:h-[90%] flex items-center align-middle justify-center text-white text-center mx-auto border-1 rounded-xl bg-gradient-to-b from-[#2A296E] to-[#272738] backdrop-blur-lg border-blue-400">
+                <div className=" relative w-[100%] h-[200px] md:w-[500px] md:h-[90%] flex flex-col  items-center align-middle justify-center text-white text-center mx-auto  rounded-xl bg-gradient-to-b from-[#3A3A3E] to-[#22224B] backdrop-blur-lg ">
                   {isVideoOn && (
                     <video
                       ref={videoRef}
@@ -149,7 +150,19 @@ const VideoCall = () => {
                       muted
                     />
                   )}
-                  {isVideoOn ? null : <h6 className="text-center"> Host</h6>}
+                  {isVideoOn ? null : (
+                    <div>
+                      <Image
+                        src={callAvatar}
+                        alt="...logo"
+                        height={50}
+                        width={160}
+                      />
+                    </div>
+                  )}
+                  <div className=" w-full absolute bottom-[5%] flex justify-end pr-8 z-50">
+                    {isVideoOn ? null : <h4>host</h4>}
+                  </div>
                 </div>
                 <div className=" md:w-[500px] md:h-[500px]  flex justify-center items-center ">
                   {peerIds.map((peerId) =>
